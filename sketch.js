@@ -1,0 +1,40 @@
+const r = require("raylib");
+
+const running = function () {
+  return !r.WindowShouldClose();
+};
+
+const setup = function () {
+  const screen = { width: 800, height: 800 };
+  const title = "Xylophone";
+  const FPS = 240;
+
+  r.SetTraceLogLevel(r.LOG_NONE);
+  r.InitWindow(screen.width, screen.height, title);
+  r.SetTargetFPS(FPS);
+
+  return {
+    screen,
+  };
+};
+
+const update = function (world) {};
+
+const draw = function (world) {
+  r.BeginDrawing();
+  r.ClearBackground(r.RAYWHITE);
+
+  r.EndDrawing();
+};
+
+const teardown = function () {
+  r.CloseWindow();
+};
+
+module.exports = {
+  running,
+  setup,
+  update,
+  draw,
+  teardown,
+};

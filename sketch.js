@@ -5,7 +5,7 @@ const running = function () {
 };
 
 const setup = function () {
-  const screen = { width: 800, height: 800 };
+  const screen = { width: 1280, height: 720 };
   const title = "Xylophone";
   const FPS = 240;
 
@@ -22,7 +22,7 @@ const update = function (world) {};
 
 const draw = function (world) {
   r.BeginDrawing();
-  r.ClearBackground(r.RAYWHITE);
+  r.ClearBackground(r.WHITE);
 
   r.EndDrawing();
 };

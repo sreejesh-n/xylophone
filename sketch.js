@@ -15,7 +15,7 @@ const setup = function () {
   r.InitAudioDevice();
   r.SetTargetFPS(FPS);
 
-  const tonebars = [
+  const xylophone = [
     t.createTonebar(167.5, 140, 90, 400, r.RED, "C5", r.KEY_A),
     t.createTonebar(262.5, 152, 90, 376, r.ORANGE, "D5", r.KEY_S),
     t.createTonebar(357.5, 164, 90, 352, r.YELLOW, "E5", r.KEY_D),
@@ -29,23 +29,24 @@ const setup = function () {
   ];
 
   return {
-    tonebars,
+    xylophone,
     screen,
   };
 };
 
 const update = function (world) {
   const dt = r.GetFrameTime();
+  const { xylophone } = world;
 
-  t.playTonebars(world.tonebars);
-  t.animateTonebars(world.tonebars, dt);
+  t.playXylophone(xylophone);
+  t.animateXylophone(xylophone, dt);
 };
 
 const draw = function (world) {
   r.BeginDrawing();
   r.ClearBackground(r.WHITE);
 
-  t.drawXylophone(world.tonebars);
+  t.drawXylophone(world.xylophone);
 
   r.EndDrawing();
 };

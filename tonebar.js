@@ -9,8 +9,8 @@ const createTonebar = function (x, y, width, height, color, note, key) {
     key,
     original: { x, y },
     offset: { x: 0, y: 0 },
-    animationOffset: { x: 0, y: 64 },
-    targetY: y - 6,
+    animationOffset: { x: 0, y: -64 },
+    maximumY: y - 6,
     isAnimating: false,
   };
 };
@@ -26,10 +26,11 @@ const drawSupportPins = function (rec) {
       x: centerX,
       y: rec.y + rec.height * 0.88,
     },
+    radius: 10,
   };
 
-  r.DrawCircleV(pins.top, 10, r.WHITE);
-  r.DrawCircleV(pins.bottom, 10, r.WHITE);
+  r.DrawCircleV(pins.top, pins.radius, r.WHITE);
+  r.DrawCircleV(pins.bottom, pins.radius, r.WHITE);
 };
 
 const drawNote = function (rec, note) {
@@ -49,8 +50,8 @@ const drawTonebar = function (config) {
   drawNote(rec, note);
 };
 
-const drawXylophone = function (tonebars) {
-  for (const tonebar of tonebars) {
+const drawXylophone = function (xylophone) {
+  for (const tonebar of xylophone) {
     drawTonebar(tonebar);
   }
 };
@@ -64,14 +65,14 @@ function reset(tonebar) {
   tonebar.isAnimating = false;
 }
 
-const animateTonebars = function (tonebars, dt) {
-  for (const tonebar of tonebars) {
-    const { rec, offset, targetY } = tonebar;
+const animateXylophone = function (xylophone, dt) {
+  for (const tonebar of xylophone) {
+    const { rec, offset, maximumY } = tonebar;
 
-    rec.x -= offset.x * dt;
-    rec.y -= offset.y * dt;
+    rec.x += offset.x * dt;
+    rec.y += offset.y * dt;
 
-    if (rec.y <= targetY) {
+    if (rec.y <= maximumY) {
       reset(tonebar);
     }
   }
@@ -89,8 +90,8 @@ const playTonebar = function (tonebar) {
   }
 };
 
-const playTonebars = function (tonebars) {
-  for (const tonebar of tonebars) {
+const playXylophone = function (xylophone) {
+  for (const tonebar of xylophone) {
     playTonebar(tonebar);
   }
 };
@@ -98,6 +99,6 @@ const playTonebars = function (tonebars) {
 module.exports = {
   createTonebar,
   drawXylophone,
-  playTonebars,
-  animateTonebars,
+  playXylophone,
+  animateXylophone,
 };

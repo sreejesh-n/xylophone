@@ -1,10 +1,12 @@
 const r = require("raylib");
 
-const createTonebar = function (x, y, width, height, color, note) {
+const createTonebar = function (x, y, width, height, color, note, key) {
   return {
     rec: { x, y, width, height },
     color,
     note,
+    sound: r.LoadSound(`notes/Xyl-${note}.wav`),
+    key,
   };
 };
 

@@ -7,6 +7,11 @@ const createTonebar = function (x, y, width, height, color, note, key) {
     note,
     sound: r.LoadSound(`notes/Xyl-${note}.wav`),
     key,
+    restPos: y,
+    offset: { x: 0, y: 0 },
+    animationOffset: { x: 0, y: 42 },
+    maxHeight: y - 4,
+    isAnimating: false,
   };
 };
 
@@ -50,10 +55,29 @@ const drawXylophone = function (tonebars) {
   }
 };
 
+const animateTonebar = function (tonebar) {
+  const dt = r.GetFrameTime();
+
+  tonebar.rec.x -= tonebar.offset.x * dt;
+  tonebar.rec.y -= tonebar.offset.y * dt;
+
+  if (tonebar.rec.y <= tonebar.maxHeight) {
+    tonebar.rec.y = tonebar.restPos;
+    tonebar.offset.x = 0;
+    tonebar.offset.y = 0;
+    tonebar.isAnimating = false;
+  }
+};
+
 const playTonebar = function (tonebar) {
   if (r.IsKeyPressed(tonebar.key)) {
+    tonebar.isAnimating = true;
+    tonebar.offset.x = tonebar.animationOffset.x;
+    tonebar.offset.y = tonebar.animationOffset.y;
+
     r.PlaySound(tonebar.sound);
   }
+  animateTonebar(tonebar);
 };
 
 const playTonebars = function (tonebars) {

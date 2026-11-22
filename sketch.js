@@ -33,39 +33,6 @@ const setup = function () {
   };
 };
 
-const drawTonebar = function (config) {
-  const { rec, color, note } = config;
-  const supportPins = {
-    top: {
-      x: rec.x + rec.width / 2,
-      y: rec.y + rec.height * 0.12,
-    },
-    bottom: {
-      x: rec.x + rec.width / 2,
-      y: rec.y + rec.height * 0.88,
-    },
-  };
-
-  r.DrawRectangleRounded(rec, 0.4, 720, color);
-  r.DrawCircleV(supportPins.top, 10, r.WHITE);
-  r.DrawCircleV(supportPins.bottom, 10, r.WHITE);
-  r.DrawText(note, rec.x + 25, rec.y + rec.height / 2 - 14, 25, r.WHITE);
-};
-
-const drawTonebars = function (tonebars) {
-  for (const tonebar of tonebars) {
-    drawTonebar(tonebar);
-  }
-};
-
-const createTonebar = function (x, y, width, height, color, note) {
-  return {
-    rec: { x, y, width, height },
-    color,
-    note,
-  };
-};
-
 const update = function (world) {};
 
 const draw = function (world) {

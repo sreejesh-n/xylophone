@@ -42,7 +42,7 @@ const draw = function (world) {
   r.BeginDrawing();
   r.ClearBackground(r.WHITE);
 
-  t.drawTonebars(world.tonebars);
+  t.drawXylophone(world.tonebars);
 
   r.EndDrawing();
 };

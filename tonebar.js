@@ -44,7 +44,7 @@ const drawTonebar = function (config) {
   drawNote(rec, note);
 };
 
-const drawTonebars = function (tonebars) {
+const drawXylophone = function (tonebars) {
   for (const tonebar of tonebars) {
     drawTonebar(tonebar);
   }
@@ -64,6 +64,6 @@ const playTonebars = function (tonebars) {
 
 module.exports = {
   createTonebar,
-  drawTonebars,
+  drawXylophone,
   playTonebars,
 };

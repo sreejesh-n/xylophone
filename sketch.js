@@ -35,7 +35,10 @@ const setup = function () {
 };
 
 const update = function (world) {
+  const dt = r.GetFrameTime();
+
   t.playTonebars(world.tonebars);
+  t.animateTonebars(world.tonebars, dt);
 };
 
 const draw = function (world) {

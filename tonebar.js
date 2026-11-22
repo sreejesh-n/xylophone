@@ -7,10 +7,10 @@ const createTonebar = function (x, y, width, height, color, note, key) {
     note,
     sound: r.LoadSound(`notes/Xyl-${note}.wav`),
     key,
-    restPos: y,
+    original: { x, y },
     offset: { x: 0, y: 0 },
-    animationOffset: { x: 0, y: 42 },
-    maxHeight: y - 4,
+    animationOffset: { x: 0, y: 64 },
+    targetY: y - 6,
     isAnimating: false,
   };
 };
@@ -55,29 +55,38 @@ const drawXylophone = function (tonebars) {
   }
 };
 
-const animateTonebar = function (tonebar) {
-  const dt = r.GetFrameTime();
+function reset(tonebar) {
+  const { rec, original, offset } = tonebar;
 
-  tonebar.rec.x -= tonebar.offset.x * dt;
-  tonebar.rec.y -= tonebar.offset.y * dt;
+  rec.y = original.y;
+  offset.x = 0;
+  offset.y = 0;
+  tonebar.isAnimating = false;
+}
 
-  if (tonebar.rec.y <= tonebar.maxHeight) {
-    tonebar.rec.y = tonebar.restPos;
-    tonebar.offset.x = 0;
-    tonebar.offset.y = 0;
-    tonebar.isAnimating = false;
+const animateTonebars = function (tonebars, dt) {
+  for (const tonebar of tonebars) {
+    const { rec, offset, targetY } = tonebar;
+
+    rec.x -= offset.x * dt;
+    rec.y -= offset.y * dt;
+
+    if (rec.y <= targetY) {
+      reset(tonebar);
+    }
   }
 };
 
 const playTonebar = function (tonebar) {
-  if (r.IsKeyPressed(tonebar.key)) {
-    tonebar.isAnimating = true;
-    tonebar.offset.x = tonebar.animationOffset.x;
-    tonebar.offset.y = tonebar.animationOffset.y;
+  const { key, offset, animationOffset, sound } = tonebar;
 
-    r.PlaySound(tonebar.sound);
+  if (r.IsKeyPressed(key)) {
+    offset.x = animationOffset.x;
+    offset.y = animationOffset.y;
+    tonebar.isAnimating = true;
+
+    r.PlaySound(sound);
   }
-  animateTonebar(tonebar);
 };
 
 const playTonebars = function (tonebars) {
@@ -90,4 +99,5 @@ module.exports = {
   createTonebar,
   drawXylophone,
   playTonebars,
+  animateTonebars,
 };

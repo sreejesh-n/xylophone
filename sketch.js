@@ -14,19 +14,20 @@ const setup = function () {
   r.SetTargetFPS(FPS);
 
   const tonebars = [
-    createTonebar(190, 140, 90, 400, r.BROWN, "C5"),
-    createTonebar(285, 152, 90, 376, r.BROWN, "D5"),
-    createTonebar(380, 164, 90, 352, r.BROWN, "E5"),
-    createTonebar(475, 176, 90, 328, r.BROWN, "F5"),
-    createTonebar(570, 188, 90, 304, r.BROWN, "G5"),
-    createTonebar(665, 200, 90, 280, r.BROWN, "A5"),
-    createTonebar(760, 212, 90, 256, r.BROWN, "B5"),
-    createTonebar(855, 224, 90, 232, r.BROWN, "C6"),
-    createTonebar(950, 236, 90, 208, r.BROWN, "D6"),
-    createTonebar(1045, 248, 90, 184, r.BROWN, "E6"),
+    createTonebar(167.5, 140, 90, 400, r.BROWN, "C5"),
+    createTonebar(262.5, 152, 90, 376, r.BROWN, "D5"),
+    createTonebar(357.5, 164, 90, 352, r.BROWN, "E5"),
+    createTonebar(452.5, 176, 90, 328, r.BROWN, "F5"),
+    createTonebar(547.5, 188, 90, 304, r.BROWN, "G5"),
+    createTonebar(642.5, 200, 90, 280, r.BROWN, "A5"),
+    createTonebar(737.5, 212, 90, 256, r.BROWN, "B5"),
+    createTonebar(832.5, 224, 90, 232, r.BROWN, "C6"),
+    createTonebar(927.5, 236, 90, 208, r.BROWN, "D6"),
+    createTonebar(1022.5, 248, 90, 184, r.BROWN, "E6"),
   ];
 
   return {
+    tonebars,
     screen,
   };
 };

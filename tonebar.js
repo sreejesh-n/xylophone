@@ -25,12 +25,21 @@ const drawSupportPins = function (rec) {
   r.DrawCircleV(pins.bottom, 10, r.WHITE);
 };
 
+const drawNote = function (rec, note) {
+  const notePosition = {
+    x: rec.x + 25,
+    y: rec.y + rec.height / 2 - 14,
+  };
+
+  r.DrawText(note, notePosition.x, notePosition.y, 25, r.WHITE);
+};
+
 const drawTonebar = function (config) {
   const { rec, color, note } = config;
 
   r.DrawRectangleRounded(rec, 0.4, 720, color);
   drawSupportPins(rec);
-  r.DrawText(note, rec.x + 25, rec.y + rec.height / 2 - 14, 25, r.WHITE);
+  drawNote(rec, note);
 };
 
 const drawTonebars = function (tonebars) {

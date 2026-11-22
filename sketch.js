@@ -34,20 +34,8 @@ const setup = function () {
   };
 };
 
-const playTonebar = function (tonebar) {
-  if (r.IsKeyPressed(tonebar.key)) {
-    r.PlaySound(tonebar.sound);
-  }
-};
-
-const playTonebars = function (tonebars) {
-  for (const tonebar of tonebars) {
-    playTonebar(tonebar);
-  }
-};
-
 const update = function (world) {
-  playTonebars(world.tonebars);
+  t.playTonebars(world.tonebars);
 };
 
 const draw = function (world) {

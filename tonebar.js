@@ -50,7 +50,20 @@ const drawTonebars = function (tonebars) {
   }
 };
 
+const playTonebar = function (tonebar) {
+  if (r.IsKeyPressed(tonebar.key)) {
+    r.PlaySound(tonebar.sound);
+  }
+};
+
+const playTonebars = function (tonebars) {
+  for (const tonebar of tonebars) {
+    playTonebar(tonebar);
+  }
+};
+
 module.exports = {
   createTonebar,
   drawTonebars,
+  playTonebars,
 };

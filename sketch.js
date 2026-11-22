@@ -79,6 +79,11 @@ const update = function (world) {
   if (r.IsKeyPressed(r.KEY_SEMICOLON)) {
     r.PlaySound(world.notes["E6"]);
   }
+  //   const keys = {
+  //     A
+  //   };
+  const key = r.GetKeyPressed();
+  console.log(key);
 };
 
 const draw = function (world) {
@@ -91,6 +96,7 @@ const draw = function (world) {
 };
 
 const teardown = function () {
+  r.CloseAudioDevice();
   r.CloseWindow();
 };
 

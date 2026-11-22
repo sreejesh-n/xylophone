@@ -18,6 +18,14 @@ const setup = function () {
   };
 };
 
+const createTonebar = function (x, y, width, height, color, note) {
+  return {
+    rec: { x, y, width, height },
+    color,
+    note,
+  };
+};
+
 const update = function (world) {};
 
 const draw = function (world) {
